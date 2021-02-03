@@ -25,7 +25,7 @@ const BST = require('./BST');
   C. Time Complexity
   Best case with tree empty: O(1)
   Average/Worst case of having to go through entire tree: O(n)
-  
+
   
 */
 
@@ -49,16 +49,4 @@ function main() {
 
   console.log(numBST);
   console.log(charBST);
-
-  function tree(t){
-    if(!t){
-        return 0;
-    }
-    console.log(t.value)
-    return tree(t.left) + t.value + tree(t.right)
-  }
-
-  const treeBST = new BST();
-  [3,2,4].forEach(num => treeBST.insert(num, num));
-  console.log(tree(treeBST));
 
