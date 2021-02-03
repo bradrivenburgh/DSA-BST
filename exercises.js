@@ -25,8 +25,12 @@ const BST = require('./BST');
   C. Time Complexity
   Best case with tree empty: O(1)
   Average/Worst case of having to go through entire tree: O(n)
-
-  
+  5. Height of a BST
+  A. Recursively traverse all left and right nodes of a binary search 
+  tree, adding 1 for each valid right and left node and subtracting
+  1 for each null node.  Return whichever is greater leftNodes or
+  rightNodes.
+  B. The time complexity is O(n) since all nodes will be visited.
 */
 
 function main() {
@@ -50,3 +54,16 @@ function main() {
   console.log(numBST);
   console.log(charBST);
 
+function findHeight(tree) {
+  if (!tree) {
+    return -1;
+  }
+  let leftHeight = findHeight(tree.left);
+  let rightHeight = findHeight(tree.right);
+  return leftHeight > rightHeight
+    ? leftHeight + 1
+    : rightHeight + 1;
+}
+
+console.log(findHeight(numBST)); // 3
+console.log(findHeight(charBST)) // 5
