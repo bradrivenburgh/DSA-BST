@@ -17,6 +17,10 @@ function main() {
   ["E","A","S","Y","Q","U","E","S","T","I","O","N"]
     .forEach(char => charBST.insert(char, char));
 
+    numBST.remove(3);
+    charBST.remove('E');
+
+
   return [numBST, charBST];
   }
 
