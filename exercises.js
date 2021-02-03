@@ -112,26 +112,29 @@ function thirdLargest(t, nodes = []) {
 
 console.log(thirdLargest(numBST));
 
-function isBalanced(t, leftHeight = 0, rightHeight = 0) {
-  if (!t) {
-    return -1;
+function isBalanced(t) {
+  let leftHeight;
+  let rightHeight;
+
+  // if root empty, it's balanced
+  if (t === null) {
+    return true;
   }
-  if (t.left) {
-    isBalanced(t.left, leftHeight + 1, rightHeight);
+  // Get max heights of left and right branches
+  leftHeight = findHeight(t.left);
+  rightHeight = findHeight(t.right);
+  // If the height difference is 1 or less, it's balanced
+  if (Math.abs(leftHeight - rightHeight) <= 1) {
+    return true;
   }
-  if (t.right) {
-    isBalanced(t.right, leftHeight, rightHeight + 1);
-  }
-  
-  return Math.abs(leftHeight - rightHeight) === 0
-    ? true
-    : false;
+  return false;
 }
 
-const balancedTree = new BST();
-balancedTree.insert(4);
-balancedTree.insert(3);
-balancedTree.insert(2);
+const unbalanced = new BST();
+unbalanced.insert(4);
+unbalanced.insert(3);
+unbalanced.insert(2);
+unbalanced.insert(1);
 
-console.log(isBalanced(numBST)); // false
-console.log(isBalanced(balancedTree)); // true
+console.log(isBalanced(numBST)); // true
+console.log(isBalanced(unbalanced)); // false
