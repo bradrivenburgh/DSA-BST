@@ -31,8 +31,8 @@ const BST = require('./BST');
   1 for each null node.  Return whichever is greater leftNodes or
   rightNodes.
   B. The time complexity is O(n) since all nodes will be visited.
-  6. Is it a BST?
-  See isBST()
+  6. Is it a BST? See isBST()
+  7. 3rd largest node? See thirdLargest()
 */
 
 function main() {
@@ -91,3 +91,22 @@ function isBST(t) {
 }
 
 console.log(isBST(numBST)) // true
+
+function thirdLargest(t, vals = []) {
+  if (!t) { // if no root node
+    return;
+  } 
+  else {
+    vals.push(t?.value); // if not null, push value to array
+  }
+  if (t.left) { // if not null, proceed to left node
+    thirdLargest(t.left, vals); 
+  }
+  if (t.right) { // if not null, proceed to right node
+    thirdLargest(t.right, vals);  
+  }
+  vals.sort((a, b) => b - a); // sort values in descending order
+  return vals[2]; // return third value (third largest)
+}
+
+console.log(thirdLargest(numBST));
