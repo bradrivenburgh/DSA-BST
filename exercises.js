@@ -112,22 +112,20 @@ function thirdLargest(t, nodes = []) {
 
 console.log(thirdLargest(numBST));
 
-function isBalanced(t) {
+function isBalanced(t, leftHeight, rightHeight) {
   if (!t) {
     return -1;
   }
   if (t.left) {
-    let leftHeight = isBalanced(t.left);
-    return leftHeight + 1
+    isBalanced(t.left, leftHeight + 1, rightHeight);
   }
   if (t.right) {
-    let rightHeight = isBalanced(t.right);
-    return rightHeight + 1;
+    isBalanced(t.right, leftHeight, rightHeight + 1);
   }
   
-  return leftHeight - rightHeight === 0
+  return Math.abs(leftHeight - rightHeight) === 0
     ? true
     : false;
 }
 
-console.log(isBalanced(numBST));
+console.log(isBalanced(numBST)); // false
