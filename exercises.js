@@ -112,7 +112,7 @@ function thirdLargest(t, nodes = []) {
 
 console.log(thirdLargest(numBST));
 
-function isBalanced(t, leftHeight, rightHeight) {
+function isBalanced(t, leftHeight = 0, rightHeight = 0) {
   if (!t) {
     return -1;
   }
@@ -128,4 +128,10 @@ function isBalanced(t, leftHeight, rightHeight) {
     : false;
 }
 
+const balancedTree = new BST();
+balancedTree.insert(4);
+balancedTree.insert(3);
+balancedTree.insert(2);
+
 console.log(isBalanced(numBST)); // false
+console.log(isBalanced(balancedTree)); // true
