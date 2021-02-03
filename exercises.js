@@ -92,21 +92,22 @@ function isBST(t) {
 
 console.log(isBST(numBST)) // true
 
-function thirdLargest(t, vals = []) {
+function thirdLargest(t, nodes = []) {
   if (!t) { // if no root node
     return;
   } 
   else {
-    vals.push(t?.value); // if not null, push value to array
+    nodes.push({key: t.key, value: t?.value}); // if not null, push node
   }
+
   if (t.left) { // if not null, proceed to left node
-    thirdLargest(t.left, vals); 
+    thirdLargest(t.left, nodes); 
   }
   if (t.right) { // if not null, proceed to right node
-    thirdLargest(t.right, vals);  
+    thirdLargest(t.right, nodes);  
   }
-  vals.sort((a, b) => b - a); // sort values in descending order
-  return vals[2]; // return third value (third largest)
+  nodes.sort((a, b) => b.value - a.value); // sort values in descending order
+  return nodes[2]; // return third value (third largest)
 }
 
 console.log(thirdLargest(numBST));
