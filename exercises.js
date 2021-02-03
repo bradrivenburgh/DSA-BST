@@ -31,6 +31,8 @@ const BST = require('./BST');
   1 for each null node.  Return whichever is greater leftNodes or
   rightNodes.
   B. The time complexity is O(n) since all nodes will be visited.
+  6. Is it a BST?
+  See isBST()
 */
 
 function main() {
@@ -67,3 +69,25 @@ function findHeight(tree) {
 
 console.log(findHeight(numBST)); // 3
 console.log(findHeight(charBST)) // 5
+
+function isBST(t) {
+  // If no root, then false
+  if (!t) { 
+    return false;
+  }
+
+  if (t.left?.value > t.value) { // left node not > than parent
+    return false;
+  } else {
+    isBST(t.left); // if ok, continue
+  }
+
+  if (t.right?.value < t.value) { // right node not < than parent
+    return false;
+  } else {
+    isBST(t.right); // if ok, continue
+  }
+  return true; // return true if all ok
+}
+
+console.log(isBST(numBST)) // true
