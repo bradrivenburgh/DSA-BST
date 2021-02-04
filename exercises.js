@@ -33,6 +33,11 @@ const BST = require('./BST');
   B. The time complexity is O(n) since all nodes will be visited.
   6. Is it a BST? See isBST()
   7. 3rd largest node? See thirdLargest()
+  8. Is the BST balanced?  See isBalanced()
+  9. Are they the same BST?
+  A. see compare()
+  B. Time complexity: O(n^k)
+
 */
 
 function main() {
@@ -138,3 +143,20 @@ unbalanced.insert(1);
 
 console.log(isBalanced(numBST)); // true
 console.log(isBalanced(unbalanced)); // false
+
+
+function compare(arr1, arr2) {
+  if (arr1[0] === arr2[0]) {
+    arr1.sort();
+    arr2.sort();
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i] !== arr2[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+
+console.log(compare([3, 5, 4, 6, 1, 0, 2], [3, 1, 5, 2, 4, 6, 0])); // true
+console.log(compare([3, 5, 4, 6, 1, 0, 2], [3, 1, 5, 2, 4, 7, 0])); // false
